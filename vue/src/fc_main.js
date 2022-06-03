@@ -10,23 +10,27 @@ class FcMain {
     self.autoClickerLv = 0;
     self.autoClickerCost = 1;
     self.autoClickerCostX = 1;
+    self.remain = 0;
   };
   tick(){
     const self=this;
-    self.clickCount += self.autoClickerLv;
+    self.remain += self.autoClickerLv;
+    const add = Math.floor(self.remain/self.FPS);
+    self.remain %= self.FPS;
+    self.clickCount += add;
   };
   click(){
     const self=this;
     self.clickCount+=1;
   };
-  upgradable(){
+  upgradeAutoClickerOk(){
     const self=this;
     if(self.clickCount<self.autoClickerCost)return false;
     return true;
   };
-  upgrade(){
+  upgradeAutoClicker(){
     const self=this;
-    if(!self.upgradable())return;
+    if(!self.upgradeAutoClickerOk())return;
     self.clickCount-=self.autoClickerCost;
     self.autoClickerLv+=1;
     const oldCost = self.autoClickerCost;

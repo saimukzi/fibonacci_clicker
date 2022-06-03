@@ -6,9 +6,10 @@ import * as freq_ctrl from './freq_ctrl.js'
 <script>
 export default {
   data() {
+    const FPS = 20;
     return {
-      fcMain: new fc_main.FcMain(20),
-      freqCtrl: new freq_ctrl.FreqCtrl(20,()=>{this.fcMain.tick();}),
+      fcMain: new fc_main.FcMain(FPS),
+      freqCtrl: new freq_ctrl.FreqCtrl(FPS,()=>{this.fcMain.tick();}),
     }
   },
   methods: {
@@ -28,7 +29,7 @@ export default {
 
 <template>
   <button @click="fcMain.click">click={{ fcMain.clickCount }}</button>
-  <button @click="fcMain.upgrade">lv={{ fcMain.autoClickerLv }} cost={{ fcMain.autoClickerCost }}</button>
+  <button @click="fcMain.upgradeAutoClicker">autoLV={{ fcMain.autoClickerLv }} cost={{ fcMain.autoClickerCost }}</button>
   <div>fpsIn={{freqCtrl.inFreqCounter.fps}}</div>
   <div>fpsOut={{freqCtrl.outFreqCounter.fps}}</div>
 </template>
