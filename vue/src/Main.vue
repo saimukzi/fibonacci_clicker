@@ -36,7 +36,7 @@ export default {
       <td>Cost</td>
     </tr>
     <tr>
-      <td>{{fcMain.point}} point</td>
+      <td><b>{{fcMain.point}} point</b></td>
       <td><button @click="fcMain.click">+{{fcMain.clickAddPoint}} point</button></td>
       <td>-</td>
     </tr>
