@@ -28,6 +28,7 @@ export default {
 </script>
 
 <template>
+  <h1>Fibonacci Clicker</h1>
   <table border="1">
     <tr>
       <td>Value</td>
