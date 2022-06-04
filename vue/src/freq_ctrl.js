@@ -13,12 +13,17 @@ class FreqCtrl {
     self.inFreqCounter = new freq_counter.FreqCounter();
     self.outFreqCounter = new freq_counter.FreqCounter();
     
-    self.msList = Array(freq);
-    for(var i=0;i<freq;++i){
-      self.msList[i] = Math.floor((1000*(i+1))/freq) - Math.floor((1000*i)/freq);
+    if(freq>0){
+      self.msList = Array(freq);
+      for(var i=0;i<self.msList.length;++i){
+        self.msList[i] = Math.floor((1000*(i+1))/freq) - Math.floor((1000*i)/freq);
+      }
+      self.msDiffMax = Math.floor(2500/freq);
+    }else{
+      self.msList = [-freq];
+      self.msDiffMax = Math.floor(2500/(-freq));
     }
     self.msListIdx = 0;
-    self.msDiffMax = Math.floor(2500/freq);
     
     self.lastMs = Date.now();
   };
@@ -36,7 +41,7 @@ class FreqCtrl {
       self.callback();
       self.lastMs += self.msList[self.msListIdx];
       self.msListIdx += 1;
-      self.msListIdx %= self.freq;
+      self.msListIdx %= self.msList.length;
     }
   };
 };
