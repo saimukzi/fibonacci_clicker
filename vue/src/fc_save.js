@@ -12,6 +12,8 @@ class FcSave {
     self.fcMain = fcMain;
     
     self.autoSaveFreqCtrl = new freq_ctrl.FreqCtrl(-60000,()=>{self.save();})
+    
+    self.lastSave = "";
   };
   
   load(){
@@ -31,6 +33,7 @@ class FcSave {
     data = JSON.stringify(data);
     console.log(`YGQKQJUN save data=${data}`);
     Cookies.set('fc_1654335253', data, { sameSite: 'strict' });
+    self.lastSave = new Date();
   };
   
   tick(){
