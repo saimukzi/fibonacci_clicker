@@ -60,6 +60,7 @@ export default {
   <div>fpsIn={{freqCtrl.inFreqCounter.fps}}</div>
   <div>fpsOut={{freqCtrl.outFreqCounter.fps}}</div>
   <div>lastSave={{fcSave.lastSave}} <button @click="fcSave.save">Save</button></div>
+  <div><button @click="fcMain.newGame">New Game</button></div>
 </template>
 
 <style scoped>

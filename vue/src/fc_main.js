@@ -7,16 +7,7 @@ class FcMain {
     const self=this;
     self.FPS = fps;
 
-    self.data = {
-      point: 0,
-      clickAddPoint: 1,
-      clickUpgradeMinusPoint: 1,
-      clickUpgradeMinusPointX: 1,
-      autoClickerAddPoint: 0,
-      autoClickerUpgradeMinusPoint: 1,
-      autoClickerUpgradeMinusPointX: 1,
-      remain: 0,
-    };
+    self.newGame();
   };
   tick(){
     const self=this;
@@ -64,6 +55,19 @@ class FcMain {
   
   import(data){
     this.data = data;
+  };
+  
+  newGame(){
+    this.data = {
+      point: 0,
+      clickAddPoint: 1,
+      clickUpgradeMinusPoint: 1,
+      clickUpgradeMinusPointX: 1,
+      autoClickerAddPoint: 0,
+      autoClickerUpgradeMinusPoint: 1,
+      autoClickerUpgradeMinusPointX: 1,
+      remain: 0,
+    };
   };
 };
 
