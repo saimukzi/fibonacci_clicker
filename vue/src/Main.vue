@@ -28,8 +28,28 @@ export default {
 </script>
 
 <template>
-  <button @click="fcMain.click">click={{ fcMain.clickCount }}</button>
-  <button @click="fcMain.upgradeAutoClicker">autoLV={{ fcMain.autoClickerLv }} cost={{ fcMain.autoClickerCost }}</button>
+  <table border="1">
+    <tr>
+      <td>Value</td>
+      <td>Action</td>
+      <td>Cost</td>
+    </tr>
+    <tr>
+      <td>{{fcMain.point}} point</td>
+      <td><button @click="fcMain.click">+{{fcMain.clickAddPoint}} point</button></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>{{fcMain.clickAddPoint}} pt/click</td>
+      <td><button @click="fcMain.upgradeClick" :disabled="!fcMain.upgradeClickOk()">+1 pt/click</button></td>
+      <td>-{{fcMain.clickUpgradeMinusPoint}} pt</td>
+    </tr>
+    <tr>
+      <td>{{fcMain.autoClickerAddPoint}} pt/sec</td>
+      <td><button @click="fcMain.upgradeAutoClicker" :disabled="!fcMain.upgradeAutoClickerOk()">+1 pt/sec</button></td>
+      <td>-{{fcMain.autoClickerUpgradeMinusPoint}} pt</td>
+    </tr>
+  </table>
   <div>fpsIn={{freqCtrl.inFreqCounter.fps}}</div>
   <div>fpsOut={{freqCtrl.outFreqCounter.fps}}</div>
 </template>
