@@ -7,82 +7,63 @@ class FcMain {
     const self=this;
     self.FPS = fps;
 
-    self.point = 0;
-
-    self.clickAddPoint = 1;
-    self.clickUpgradeMinusPoint = 1;
-    self.clickUpgradeMinusPointX = 1;
-
-    self.autoClickerAddPoint = 0;
-    self.autoClickerUpgradeMinusPoint = 1;
-    self.autoClickerUpgradeMinusPointX = 1;
-
-    self.remain = 0;
+    self.data = {
+      point: 0,
+      clickAddPoint: 1,
+      clickUpgradeMinusPoint: 1,
+      clickUpgradeMinusPointX: 1,
+      autoClickerAddPoint: 0,
+      autoClickerUpgradeMinusPoint: 1,
+      autoClickerUpgradeMinusPointX: 1,
+      remain: 0,
+    };
   };
   tick(){
     const self=this;
-    self.remain += self.autoClickerAddPoint;
-    const add = Math.floor(self.remain/self.FPS);
-    self.remain %= self.FPS;
-    self.point += add;
+    self.data.remain += self.data.autoClickerAddPoint;
+    const add = Math.floor(self.data.remain/self.FPS);
+    self.data.remain %= self.FPS;
+    self.data.point += add;
   };
   click(){
     const self=this;
-    self.point+=self.clickAddPoint;
+    self.data.point+=self.data.clickAddPoint;
   };
   upgradeClickOk(){
     const self=this;
-    if(self.point<self.clickUpgradeMinusPoint)return false;
+    if(self.data.point<self.data.clickUpgradeMinusPoint)return false;
     return true;
   };
   upgradeClick(){
     const self=this;
     if(!self.upgradeClickOk())return;
-    self.point-=self.clickUpgradeMinusPoint;
-    self.clickAddPoint+=1;
-    const oldCost = self.clickUpgradeMinusPoint;
-    self.clickUpgradeMinusPoint += self.clickUpgradeMinusPointX;
-    self.clickUpgradeMinusPointX = oldCost;
+    self.data.point-=self.data.clickUpgradeMinusPoint;
+    self.data.clickAddPoint+=1;
+    const oldCost = self.data.clickUpgradeMinusPoint;
+    self.data.clickUpgradeMinusPoint += self.data.clickUpgradeMinusPointX;
+    self.data.clickUpgradeMinusPointX = oldCost;
   };
   upgradeAutoClickerOk(){
     const self=this;
-    if(self.point<self.autoClickerUpgradeMinusPoint)return false;
+    if(self.data.point<self.data.autoClickerUpgradeMinusPoint)return false;
     return true;
   };
   upgradeAutoClicker(){
     const self=this;
     if(!self.upgradeAutoClickerOk())return;
-    self.point-=self.autoClickerUpgradeMinusPoint;
-    self.autoClickerAddPoint+=1;
-    const oldCost = self.autoClickerUpgradeMinusPoint;
-    self.autoClickerUpgradeMinusPoint += self.autoClickerUpgradeMinusPointX;
-    self.autoClickerUpgradeMinusPointX = oldCost;
+    self.data.point-=self.data.autoClickerUpgradeMinusPoint;
+    self.data.autoClickerAddPoint+=1;
+    const oldCost = self.data.autoClickerUpgradeMinusPoint;
+    self.data.autoClickerUpgradeMinusPoint += self.data.autoClickerUpgradeMinusPointX;
+    self.data.autoClickerUpgradeMinusPointX = oldCost;
   };
 
   export(){
-    const self=this;
-    return {
-      point: self.point,
-      clickAddPoint: self.clickAddPoint,
-      clickUpgradeMinusPoint: self.clickUpgradeMinusPoint,
-      clickUpgradeMinusPointX: self.clickUpgradeMinusPointX,
-      autoClickerAddPoint: self.autoClickerAddPoint,
-      autoClickerUpgradeMinusPoint: self.autoClickerUpgradeMinusPoint,
-      autoClickerUpgradeMinusPointX: self.autoClickerUpgradeMinusPointX,
-      remain: self.remain,
-    };
+    return this.data;
   };
   
   import(data){
-    const self=this;
-    self.point = data.point;
-    self.clickAddPoint = data.clickAddPoint;
-    self.clickUpgradeMinusPoint = data.clickUpgradeMinusPoint;
-    self.clickUpgradeMinusPointX = data.clickUpgradeMinusPointX;
-    self.autoClickerAddPoint = data.autoClickerAddPoint;
-    self.autoClickerUpgradeMinusPoint = data.autoClickerUpgradeMinusPoint;
-    self.autoClickerUpgradeMinusPointX = data.autoClickerUpgradeMinusPointX;
-    self.remain = data.remain;
+    this.data = data;
   };
 };
 

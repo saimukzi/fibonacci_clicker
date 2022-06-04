@@ -42,19 +42,19 @@ export default {
       <td>Cost</td>
     </tr>
     <tr>
-      <td><b>{{fcMain.point}} point</b></td>
-      <td><button @click="fcMain.click">+{{fcMain.clickAddPoint}} point</button></td>
+      <td><b>{{fcMain.data.point}} point</b></td>
+      <td><button @click="fcMain.click">+{{fcMain.data.clickAddPoint}} point</button></td>
       <td>-</td>
     </tr>
     <tr>
-      <td>{{fcMain.clickAddPoint}} pt/click</td>
+      <td>{{fcMain.data.clickAddPoint}} pt/click</td>
       <td><button @click="fcMain.upgradeClick" :disabled="!fcMain.upgradeClickOk()">+1 pt/click</button></td>
-      <td>-{{fcMain.clickUpgradeMinusPoint}} pt</td>
+      <td>-{{fcMain.data.clickUpgradeMinusPoint}} pt</td>
     </tr>
     <tr>
-      <td>{{fcMain.autoClickerAddPoint}} pt/sec</td>
+      <td>{{fcMain.data.autoClickerAddPoint}} pt/sec</td>
       <td><button @click="fcMain.upgradeAutoClicker" :disabled="!fcMain.upgradeAutoClickerOk()">+1 pt/sec</button></td>
-      <td>-{{fcMain.autoClickerUpgradeMinusPoint}} pt</td>
+      <td>-{{fcMain.data.autoClickerUpgradeMinusPoint}} pt</td>
     </tr>
   </table>
   <div>fpsIn={{freqCtrl.inFreqCounter.fps}}</div>
