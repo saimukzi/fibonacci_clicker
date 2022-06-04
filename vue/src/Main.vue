@@ -1,5 +1,6 @@
 <script setup>
 import * as fc_main from './fc_main.js'
+import * as fc_save from './fc_save.js'
 import * as freq_ctrl from './freq_ctrl.js'
 </script>
 
@@ -7,18 +8,23 @@ import * as freq_ctrl from './freq_ctrl.js'
 export default {
   data() {
     const FPS = 20;
-    return {
-      fcMain: new fc_main.FcMain(FPS),
-      freqCtrl: new freq_ctrl.FreqCtrl(FPS,()=>{this.fcMain.tick();}),
-    }
+
+    const retDict = {};
+    retDict['fcMain'] = new fc_main.FcMain(FPS);
+    retDict['freqCtrl'] = new freq_ctrl.FreqCtrl(FPS,()=>{retDict['fcMain'].tick();});
+    retDict['fcSave'] = new fc_save.FcSave(retDict['fcMain']);
+    
+    return retDict;
   },
   methods: {
     tick() {
       const self=this;
       self.freqCtrl.tick();
+      self.fcSave.tick();
     }
   },
   mounted() {
+    this.fcSave.load();
     this.tickTimer = setInterval(this.tick, 1000/60);
   },
   beforeDestroy() {

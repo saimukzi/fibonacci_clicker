@@ -21,7 +21,7 @@ class FreqCtrl {
       self.msDiffMax = Math.floor(2500/freq);
     }else{
       self.msList = [-freq];
-      self.msDiffMax = Math.floor(2500/(-freq));
+      self.msDiffMax = Math.floor(2.5*(-freq));
     }
     self.msListIdx = 0;
     

@@ -6,6 +6,7 @@ class FcMain {
   constructor(fps){
     const self=this;
     self.FPS = fps;
+
     self.point = 0;
 
     self.clickAddPoint = 1;
@@ -56,6 +57,32 @@ class FcMain {
     const oldCost = self.autoClickerUpgradeMinusPoint;
     self.autoClickerUpgradeMinusPoint += self.autoClickerUpgradeMinusPointX;
     self.autoClickerUpgradeMinusPointX = oldCost;
+  };
+
+  export(){
+    const self=this;
+    return {
+      point: self.point,
+      clickAddPoint: self.clickAddPoint,
+      clickUpgradeMinusPoint: self.clickUpgradeMinusPoint,
+      clickUpgradeMinusPointX: self.clickUpgradeMinusPointX,
+      autoClickerAddPoint: self.autoClickerAddPoint,
+      autoClickerUpgradeMinusPoint: self.autoClickerUpgradeMinusPoint,
+      autoClickerUpgradeMinusPointX: self.autoClickerUpgradeMinusPointX,
+      remain: self.remain,
+    };
+  };
+  
+  import(data){
+    const self=this;
+    self.point = data.point;
+    self.clickAddPoint = data.clickAddPoint;
+    self.clickUpgradeMinusPoint = data.clickUpgradeMinusPoint;
+    self.clickUpgradeMinusPointX = data.clickUpgradeMinusPointX;
+    self.autoClickerAddPoint = data.autoClickerAddPoint;
+    self.autoClickerUpgradeMinusPoint = data.autoClickerUpgradeMinusPoint;
+    self.autoClickerUpgradeMinusPointX = data.autoClickerUpgradeMinusPointX;
+    self.remain = data.remain;
   };
 };
 
