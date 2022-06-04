@@ -59,7 +59,7 @@ export default {
   </table>
   <div>fpsIn={{freqCtrl.inFreqCounter.fps}}</div>
   <div>fpsOut={{freqCtrl.outFreqCounter.fps}}</div>
-  <div>lastSave={{fcSave.lastSave}}</div>
+  <div>lastSave={{fcSave.lastSave}} <button @click="fcSave.save">Save</button></div>
 </template>
 
 <style scoped>
