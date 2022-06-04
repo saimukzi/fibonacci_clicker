@@ -14,6 +14,6 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: '../ghPages/vue',
+    outDir: '../docs/vue',
   },
 })
