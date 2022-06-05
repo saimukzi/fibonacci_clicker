@@ -19,7 +19,7 @@ class SmzSave {
   load(){
     const self=this;
     var data = null;
-    if(!data) data = load_1654335253();
+    if(!data) data = self.load_1654335253();
     if(data){
       data = JSON.parse(data);
       self.gameMain.import(data);
