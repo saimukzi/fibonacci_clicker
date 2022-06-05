@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-import * as freq_ctrl from './smz_freq_ctrl.js'
+import * as smz_freq_ctrl from './smz_freq_ctrl.js'
 
 'use strict';
 
@@ -11,7 +11,7 @@ class SmzSave {
     const self=this;
     self.gameMain = gameMain;
     
-    self.autoSaveFreqCtrl = new freq_ctrl.SmzFreqCtrl(-60000,()=>{self.save();})
+    self.autoSaveFreqCtrl = new smz_freq_ctrl.SmzFreqCtrl(-60000,()=>{self.save();})
     
     self.lastSave = "";
   };
