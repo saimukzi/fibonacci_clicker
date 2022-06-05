@@ -2,9 +2,9 @@ import * as freq_counter from './freq_counter.js'
 
 'use strict';
 
-export const FreqCtrl = (function(){
+export const SmzFreqCtrl = (function(){
 
-class FreqCtrl {
+class SmzFreqCtrl {
   constructor(freq,callback){
     const self=this;
     self.freq = freq;
@@ -46,6 +46,6 @@ class FreqCtrl {
   };
 };
 
-return FreqCtrl;
+return SmzFreqCtrl;
 
 })();

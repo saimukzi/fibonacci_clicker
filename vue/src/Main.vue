@@ -11,7 +11,7 @@ export default {
 
     const retDict = {};
     retDict['fcMain'] = new fc_main.FcMain(FPS);
-    retDict['freqCtrl'] = new freq_ctrl.FreqCtrl(FPS,()=>{retDict['fcMain'].tick();});
+    retDict['freqCtrl'] = new freq_ctrl.SmzFreqCtrl(FPS,()=>{retDict['fcMain'].tick();});
     retDict['fcSave'] = new smz_save.SmzSave(retDict['fcMain']);
     
     return retDict;

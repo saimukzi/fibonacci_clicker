@@ -11,7 +11,7 @@ class SmzSave {
     const self=this;
     self.gameMain = gameMain;
     
-    self.autoSaveFreqCtrl = new freq_ctrl.FreqCtrl(-60000,()=>{self.save();})
+    self.autoSaveFreqCtrl = new freq_ctrl.SmzFreqCtrl(-60000,()=>{self.save();})
     
     self.lastSave = "";
   };
