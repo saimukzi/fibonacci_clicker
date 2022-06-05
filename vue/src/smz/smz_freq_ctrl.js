@@ -1,4 +1,4 @@
-import * as freq_counter from './smz_freq_counter.js'
+import * as smz_freq_counter from './smz_freq_counter.js'
 
 'use strict';
 
@@ -10,8 +10,8 @@ class SmzFreqCtrl {
     self.freq = freq;
     self.callback = callback;
 
-    self.inFreqCounter = new freq_counter.SmzFreqCounter();
-    self.outFreqCounter = new freq_counter.SmzFreqCounter();
+    self.inFreqCounter = new smz_freq_counter.SmzFreqCounter();
+    self.outFreqCounter = new smz_freq_counter.SmzFreqCounter();
     
     if(freq>0){
       self.msList = Array(freq);
