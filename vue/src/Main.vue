@@ -1,7 +1,7 @@
 <script setup>
 import * as fc_main from './fc_main.js'
 import * as smz_save from './smz/smz_save.js'
-import * as freq_ctrl from './smz/smz_freq_ctrl.js'
+import * as smz_freq_ctrl from './smz/smz_freq_ctrl.js'
 </script>
 
 <script>
@@ -11,7 +11,7 @@ export default {
 
     const retDict = {};
     retDict['fcMain'] = new fc_main.FcMain(FPS);
-    retDict['freqCtrl'] = new freq_ctrl.SmzFreqCtrl(FPS,()=>{retDict['fcMain'].tick();});
+    retDict['freqCtrl'] = new smz_freq_ctrl.SmzFreqCtrl(FPS,()=>{retDict['fcMain'].tick();});
     retDict['fcSave'] = new smz_save.SmzSave(retDict['fcMain']);
     
     return retDict;
