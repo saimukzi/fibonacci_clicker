@@ -1,4 +1,4 @@
-import * as freq_counter from './freq_counter.js'
+import * as freq_counter from './../freq_counter.js'
 
 'use strict';
 
