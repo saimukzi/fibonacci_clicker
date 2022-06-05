@@ -12,7 +12,7 @@ export default {
     const retDict = {};
     retDict['fcMain'] = new fc_main.FcMain(FPS);
     retDict['freqCtrl'] = new freq_ctrl.FreqCtrl(FPS,()=>{retDict['fcMain'].tick();});
-    retDict['fcSave'] = new fc_save.FcSave(retDict['fcMain']);
+    retDict['fcSave'] = new fc_save.SmzSave(retDict['fcMain']);
     
     return retDict;
   },

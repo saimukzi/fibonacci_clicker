@@ -4,9 +4,9 @@ import * as freq_ctrl from './freq_ctrl.js'
 
 'use strict';
 
-export const FcSave = (function(){
+export const SmzSave = (function(){
 
-class FcSave {
+class SmzSave {
   constructor(gameMain){
     const self=this;
     self.gameMain = gameMain;
@@ -42,6 +42,6 @@ class FcSave {
   };
 };
 
-return FcSave;
+return SmzSave;
 
 })();
