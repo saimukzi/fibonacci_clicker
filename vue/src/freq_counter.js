@@ -1,8 +1,8 @@
 'use strict';
 
-export const FreqCounter = (function(){
+export const SmzFreqCounter = (function(){
 
-class FreqCounter {
+class SmzFreqCounter {
   constructor(){
     const self=this;
     self.tsList = [];
@@ -22,6 +22,6 @@ class FreqCounter {
   };
 };
 
-return FreqCounter;
+return SmzFreqCounter;
 
 })();

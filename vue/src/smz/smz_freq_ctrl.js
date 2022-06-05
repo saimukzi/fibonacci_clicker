@@ -10,8 +10,8 @@ class SmzFreqCtrl {
     self.freq = freq;
     self.callback = callback;
 
-    self.inFreqCounter = new freq_counter.FreqCounter();
-    self.outFreqCounter = new freq_counter.FreqCounter();
+    self.inFreqCounter = new freq_counter.SmzFreqCounter();
+    self.outFreqCounter = new freq_counter.SmzFreqCounter();
     
     if(freq>0){
       self.msList = Array(freq);
