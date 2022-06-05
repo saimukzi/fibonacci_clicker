@@ -1,6 +1,6 @@
 <script setup>
 import * as fc_main from './fc_main.js'
-import * as smz_save from './smz_save.js'
+import * as smz_save from './smz/smz_save.js'
 import * as freq_ctrl from './freq_ctrl.js'
 </script>
 
