@@ -1,3 +1,5 @@
+import * as smz_common from '../smz/smz_common.js'; const common=smz_common.SmzCommon;
+
 'use strict';
 
 export const FcMain = (function(){
@@ -50,11 +52,11 @@ class FcMain {
   };
 
   export(){
-    return this.data;
+    return common.clone(this.data);
   };
   
   import(data){
-    this.data = data;
+    this.data = common.clone(data);
   };
   
   newGame(){
