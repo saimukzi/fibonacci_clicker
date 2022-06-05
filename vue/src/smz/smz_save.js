@@ -18,8 +18,8 @@ class SmzSave {
   
   load(){
     const self=this;
-    var data;
-    data = Cookies.get('fc_1654335253');
+    var data = null;
+    if(!data) data = load_1654335253();
     if(data){
       data = JSON.parse(data);
       self.gameMain.import(data);
@@ -40,6 +40,12 @@ class SmzSave {
     const self=this;
     self.autoSaveFreqCtrl.tick();
   };
+
+  // ver 1654335253
+  load_1654335253(){
+    return Cookies.get('fc_1654335253');
+  };
+
 };
 
 return SmzSave;
