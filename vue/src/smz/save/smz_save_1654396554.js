@@ -1,7 +1,8 @@
 import Cookies from 'js-cookie'
 
+import * as smz_common from '../smz_common.js'; const common=smz_common.SmzCommon;
+import * as smz_freq_ctrl from '../smz_freq_ctrl.js'
 import * as smz_save_1654335253 from './smz_save_1654335253.js'
-import * as smz_common from '../../smz/smz_common.js'; const common=smz_common.SmzCommon;
 
 'use strict';
 
@@ -17,7 +18,7 @@ class SmzSave1654396554Class {
     const self=this;
     self.gameMain = gameMain;
     
-    self.autoSaveFreqCtrl = new smz_freq_ctrl.SmzFreqCtrl(-60000,()=>{self.save();})
+    self.autoSaveFreqCtrl = new smz_freq_ctrl.SmzFreqCtrl(-60000,()=>{self.saveAutoSave();})
     
     self.lastSave = "";
   };
@@ -32,6 +33,7 @@ class SmzSave1654396554Class {
   };
   
   loadAutoSave(){
+    console.log("loadAutoSave");
     const self=this;
     while(true){
       var data = SmzSave1654396554.getAutoSave();
@@ -70,7 +72,7 @@ SmzSave1654396554.setAutoSave = function(data){
       bestAutoSaveTs = autoSaveTs;
     }
   }
-  assert(bestAutoSaveSlot!=null);
+  console.assert(bestAutoSaveSlot!=null);
 
   const nowTs = Date.now();
   SmzSave1654396554.setData(`${AUTOSAVE_PREFIX}.${bestAutoSaveSlot}`, data);
@@ -78,12 +80,14 @@ SmzSave1654396554.setAutoSave = function(data){
 };
 
 SmzSave1654396554.getAutoSave = function(){
+  console.log("getAutoSave");
   while(true){
     var bestAutoSaveSlot = null;
     var bestAutoSaveTs   = null;
     for(var autoSaveSlot=0;autoSaveSlot<AUTOSAVE_SLOT_COUNT;++autoSaveSlot){
       var autoSaveTs = SmzSave1654396554.getTs(`${AUTOSAVE_PREFIX}.${autoSaveSlot}`);
-      if(!autoSaveTs)continue;
+      console.log(`getAutoSave autoSaveTs=${autoSaveTs}`);
+      if(autoSaveTs==null)continue;
       if((bestAutoSaveTs==null)||(autoSaveTs>bestAutoSaveTs)){
         bestAutoSaveSlot = autoSaveSlot;
         bestAutoSaveTs = autoSaveTs;
@@ -92,8 +96,11 @@ SmzSave1654396554.getAutoSave = function(){
     if(bestAutoSaveSlot==null){
       break;
     }
-    var bestAutoSaveData = SmzSave1654396554.getData(`${AUTOSAVE_PREFIX}.${autoSaveSlot}`);
-    if(bestAutoSaveData==null)continue;
+    var bestAutoSaveData = SmzSave1654396554.getData(`${AUTOSAVE_PREFIX}.${bestAutoSaveSlot}`);
+    if(bestAutoSaveData==null){
+      SmzSave1654396554.rm(`${AUTOSAVE_PREFIX}.${bestAutoSaveSlot}`);
+      continue;
+    }
     return bestAutoSaveData;
   }
   
@@ -105,22 +112,20 @@ SmzSave1654396554.getAutoSave = function(){
 };
 
 SmzSave1654396554.rmTopAutoSave = function(){
-  while(true){
-    var bestAutoSaveSlot = null;
-    var bestAutoSaveTs   = null;
-    for(var autoSaveSlot=0;autoSaveSlot<AUTOSAVE_SLOT_COUNT;++autoSaveSlot){
-      var autoSaveTs = SmzSave1654396554.getTs(`${AUTOSAVE_PREFIX}.${autoSaveSlot}`);
-      if(!autoSaveTs)continue;
-      if((bestAutoSaveTs==null)||(autoSaveTs>bestAutoSaveTs)){
-        bestAutoSaveSlot = autoSaveSlot;
-        bestAutoSaveTs = autoSaveTs;
-      }
+  var bestAutoSaveSlot = null;
+  var bestAutoSaveTs   = null;
+  for(var autoSaveSlot=0;autoSaveSlot<AUTOSAVE_SLOT_COUNT;++autoSaveSlot){
+    var autoSaveTs = SmzSave1654396554.getTs(`${AUTOSAVE_PREFIX}.${autoSaveSlot}`);
+    if(!autoSaveTs)continue;
+    if((bestAutoSaveTs==null)||(autoSaveTs>bestAutoSaveTs)){
+      bestAutoSaveSlot = autoSaveSlot;
+      bestAutoSaveTs = autoSaveTs;
     }
-    if(bestAutoSaveSlot==null){
-      break;
-    }
-    SmzSave1654396554.rm(`${AUTOSAVE_PREFIX}.${autoSaveSlot}`);
   }
+  if(bestAutoSaveSlot==null){
+    return;
+  }
+  SmzSave1654396554.rm(`${AUTOSAVE_PREFIX}.${autoSaveSlot}`);
 };
 
 SmzSave1654396554.setTs = function(prefix, ts){

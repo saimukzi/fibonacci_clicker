@@ -24,7 +24,7 @@ export default {
     }
   },
   mounted() {
-    this.fcSave.load();
+    this.fcSave.loadAutoSave();
     this.tickTimer = setInterval(this.tick, 1000/60);
   },
   beforeDestroy() {
@@ -59,7 +59,7 @@ export default {
   </table>
   <div>fpsIn={{freqCtrl.inFreqCounter.fps}}</div>
   <div>fpsOut={{freqCtrl.outFreqCounter.fps}}</div>
-  <div>lastSave={{fcSave.lastSave}} <button @click="fcSave.save">Save</button></div>
+  <div>lastSave={{fcSave.lastSave}} <button @click="fcSave.saveAutoSave">Save</button></div>
   <div><button @click="fcMain.newGame">New Game</button></div>
 </template>
 

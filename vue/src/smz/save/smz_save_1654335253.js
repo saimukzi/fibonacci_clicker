@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 
-import * as smz_freq_ctrl from './../smz_freq_ctrl.js'
+import * as smz_freq_ctrl from '../smz_freq_ctrl.js'
 
 'use strict';
 
