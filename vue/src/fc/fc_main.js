@@ -57,6 +57,7 @@ class FcMain {
   
   import(data){
     this.data = common.clone(data);
+    return true;
   };
   
   newGame(){
