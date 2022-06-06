@@ -1,5 +1,7 @@
 import Cookies from 'js-cookie'
 
+import * as smz_save_1654335253 from './save/smz_save_1654335253.js'
+
 'use strict';
 
 export const SmzSave1654396554 = (function(){
@@ -8,6 +10,49 @@ const AUTOSAVE_PREFIX = 'fc.autosave.v1654396554';
 const AUTOSAVE_SLOT_COUNT = 3;
 
 const SmzSave1654396554 = {};
+
+class SmzSave1654396554Class {
+  constructor(gameMain){
+    const self=this;
+    self.gameMain = gameMain;
+    
+    self.autoSaveFreqCtrl = new smz_freq_ctrl.SmzFreqCtrl(-60000,()=>{self.save();})
+    
+    self.lastSave = "";
+  };
+  
+  saveAutoSave(){
+    const self=this;
+    var data = self.gameMain.export();
+    data = JSON.stringify(data);
+    console.log(`YGQKQJUN save data=${data}`);
+    SmzSave1654396554.setAutoSave(data);
+    self.lastSave = new Date();
+  };
+  
+  loadAutoSave(){
+    const self=this;
+    while(true){
+      var data = SmzSave1654396554.getAutoSave();
+      if(data==null)break;
+      try{
+        data = JSON.parse(data);
+        var importRet = self.gameMain.import(data);
+        if(importRet)return true;
+      }catch(err){
+      }
+      SmzSave1654396554.rmTopAutoSave();
+    }
+    return false;
+  };
+  
+  tick(){
+    const self=this;
+    self.autoSaveFreqCtrl.tick();
+  };
+
+};
+SmzSave1654396554.Class = SmzSave1654396554Class;
 
 SmzSave1654396554.setAutoSave = function(data){
   var bestAutoSaveSlot = null;
