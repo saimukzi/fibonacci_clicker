@@ -55,7 +55,7 @@ SmzSave1654396554.getAutoSave = function(){
 };
 
 SmzSave1654396554.setTs = function(prefix, ts){
-  Cookies.set(`${prefix}.ts`, ts, { sameSite: 'strict' });
+  Cookies.set(`${prefix}.ts`, ts, { sameSite: 'strict', expires: 40000 });
 };
 
 SmzSave1654396554.getTs = function(prefix){
@@ -71,7 +71,7 @@ SmzSave1654396554.getTs = function(prefix){
 };
 
 SmzSave1654396554.setData = function(prefix, data){
-  Cookies.set(`${prefix}.data`, JSON.stringify(data), { sameSite: 'strict' });
+  Cookies.set(`${prefix}.data`, JSON.stringify(data), { sameSite: 'strict', expires: 40000 });
 };
 
 SmzSave1654396554.getData = function(prefix){
