@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 
-import * as smz_save_1654335253 from './save/smz_save_1654335253.js'
+import * as smz_save_1654335253 from './smz_save_1654335253.js'
+import * as smz_common from '../../smz/smz_common.js'; const common=smz_common.SmzCommon;
 
 'use strict';
 
@@ -96,7 +97,30 @@ SmzSave1654396554.getAutoSave = function(){
     return bestAutoSaveData;
   }
   
-  return null; // TODO: load old ver save
+  // load old data, upgrade, output
+  var data = smz_save_1654335253.SmzSave1654335253.get();
+  if(data==null)return null;
+  data = SmzSave1654396554.upgradeFrom1654335253(data);
+  return data;
+};
+
+SmzSave1654396554.rmTopAutoSave = function(){
+  while(true){
+    var bestAutoSaveSlot = null;
+    var bestAutoSaveTs   = null;
+    for(var autoSaveSlot=0;autoSaveSlot<AUTOSAVE_SLOT_COUNT;++autoSaveSlot){
+      var autoSaveTs = SmzSave1654396554.getTs(`${AUTOSAVE_PREFIX}.${autoSaveSlot}`);
+      if(!autoSaveTs)continue;
+      if((bestAutoSaveTs==null)||(autoSaveTs>bestAutoSaveTs)){
+        bestAutoSaveSlot = autoSaveSlot;
+        bestAutoSaveTs = autoSaveTs;
+      }
+    }
+    if(bestAutoSaveSlot==null){
+      break;
+    }
+    SmzSave1654396554.rm(`${AUTOSAVE_PREFIX}.${autoSaveSlot}`);
+  }
 };
 
 SmzSave1654396554.setTs = function(prefix, ts){
@@ -134,6 +158,10 @@ SmzSave1654396554.getData = function(prefix){
 SmzSave1654396554.rm = function(prefix){
   Cookies.remove(`${prefix}.ts`, { sameSite: 'strict' });
   Cookies.remove(`${prefix}.data`, { sameSite: 'strict' });
+};
+
+SmzSave1654396554.upgradeFrom1654335253 = function(data){
+  return common.clone(data);
 };
 
 return SmzSave1654396554;
