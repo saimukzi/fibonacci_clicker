@@ -83,7 +83,7 @@ export default {
     <div><button @click="fcMain.newGame">New Game</button></div>
   </div>
   <div v-else>
-    Double tab not allowed.
+    Multiple tab is not allowed.
   </div>
 </template>
 
