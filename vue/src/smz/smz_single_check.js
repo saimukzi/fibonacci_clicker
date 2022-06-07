@@ -19,6 +19,7 @@ class SmzSingleCheck {
   };
   
   onEnd(){
+    const self = this;
     if(!self.good)return;
     clearInterval(this.writeTimer);
     this.remove();
@@ -38,6 +39,7 @@ class SmzSingleCheck {
 
   check(){
     var value = Cookies.get(this.key, { sameSite: 'strict'});
+    console.log(`SmzSingleCheck.check value=${value}`);
     if(value==null)return true;
     value = value.split("|");
     if(value[0]==this.key)return true;
