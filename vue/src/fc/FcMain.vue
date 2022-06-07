@@ -27,7 +27,7 @@ export default {
     this.fcSave.loadAutoSave();
     this.tickTimer = setInterval(this.tick, 1000/60);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     clearInterval(this.tickTimer);
   },
 }
