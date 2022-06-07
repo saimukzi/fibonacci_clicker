@@ -21,14 +21,23 @@ export default {
       const self=this;
       self.freqCtrl.tick();
       self.fcSave.tick();
-    }
+    },
+    onEnd() {
+      const self=this;
+      self.fcSave.saveAutoSave();
+    },
   },
   mounted() {
-    this.fcSave.loadAutoSave();
-    this.tickTimer = setInterval(this.tick, 1000/60);
+    const self=this;
+    self.fcSave.loadAutoSave();
+    window.addEventListener('beforeunload', self.onEnd);
+    self.tickTimer = setInterval(self.tick, 1000/60);
   },
   beforeUnmount() {
-    clearInterval(this.tickTimer);
+    const self=this;
+    clearInterval(self.tickTimer);
+    window.removeEventListener('beforeunload', self.onEnd);
+    self.fcSave.onEnd();
   },
 }
 </script>
