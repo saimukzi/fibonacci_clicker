@@ -17,6 +17,10 @@ export default {
     return retDict;
   },
   methods: {
+    onStart() {
+      const self=this;
+      self.fcSave.loadAutoSave();
+    },
     tick() {
       const self=this;
       self.freqCtrl.tick();
@@ -29,7 +33,7 @@ export default {
   },
   mounted() {
     const self=this;
-    self.fcSave.loadAutoSave();
+    self.onStart();
     window.addEventListener('beforeunload', self.onEnd);
     self.tickTimer = setInterval(self.tick, 1000/60);
   },
@@ -37,7 +41,7 @@ export default {
     const self=this;
     clearInterval(self.tickTimer);
     window.removeEventListener('beforeunload', self.onEnd);
-    self.fcSave.onEnd();
+    self.onEnd();
   },
 }
 </script>
