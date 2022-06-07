@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "js-cookie": "^3.0.1",
+    "uuidv4": "^6.2.13",
     "vue": "^3.2.36"
   },
   "devDependencies": {

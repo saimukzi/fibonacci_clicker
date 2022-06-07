@@ -1,7 +1,8 @@
 <script setup>
 import * as fc_main from './fc_main.js'
-import * as smz_save from '../smz/smz_save.js'
 import * as smz_freq_ctrl from '../smz/smz_freq_ctrl.js'
+import * as smz_save from '../smz/smz_save.js'
+import * as smz_single_check from '../smz/smz_single_check.js'
 </script>
 
 <script>
@@ -13,6 +14,7 @@ export default {
     retDict['fcMain'] = new fc_main.FcMain(FPS);
     retDict['freqCtrl'] = new smz_freq_ctrl.SmzFreqCtrl(FPS,()=>{retDict['fcMain'].tick();});
     retDict['fcSave'] = new smz_save.SmzSave(retDict['fcMain']);
+    retDict['singleCheck'] = new smz_single_check.SmzSingleCheck('fc.singleCheck');
     
     return retDict;
   },
@@ -29,6 +31,7 @@ export default {
     onEnd() {
       const self=this;
       self.fcSave.saveAutoSave();
+      self.singleCheck.onEnd();
     },
   },
   mounted() {
