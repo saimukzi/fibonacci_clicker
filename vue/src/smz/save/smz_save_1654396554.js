@@ -18,7 +18,7 @@ class SmzSave1654396554Class {
     const self=this;
     self.gameMain = gameMain;
     
-    self.autoSaveFreqCtrl = new smz_freq_ctrl.SmzFreqCtrl(-60000,()=>{self.saveAutoSave();})
+    self.autoSaveFreqCtrl = new smz_freq_ctrl.SmzFreqCtrl(-60000,()=>{self.saveAutoSave();});
     
     self.lastSave = "";
   };
