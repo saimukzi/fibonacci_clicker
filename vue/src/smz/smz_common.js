@@ -8,6 +8,7 @@ export const SmzCommon = (function(){
 const SmzCommon = {};
 
 SmzCommon.clone = function(data){
+  // vue use Proxy and structuredClone not working
   return JSON.parse(JSON.stringify(data));
 };
 
