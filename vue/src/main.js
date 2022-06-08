@@ -1,4 +1,4 @@
 import { createApp } from 'vue'
-import FcMain from './fc/FcMain.vue'
+import FcGame from './fc/FcGame.vue'
 
-createApp(FcMain).mount('#app')
+createApp(FcGame).mount('#app')

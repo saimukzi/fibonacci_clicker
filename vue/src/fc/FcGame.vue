@@ -12,7 +12,7 @@ export default {
 
     const retDict = {};
     retDict['singleCheck'] = new smz_single_check.SmzSingleCheck('fc.singleCheck');
-    retDict['fcMain'] = new fc_main.FcMain(FPS);
+    retDict['fcMain'] = new fc_main.FcGame(FPS);
     retDict['freqCtrl'] = new smz_freq_ctrl.SmzFreqCtrl(FPS,()=>{retDict['fcMain'].tick();});
     retDict['fcSave'] = new smz_save.SmzSave(retDict['fcMain']);
     
