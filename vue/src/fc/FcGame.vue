@@ -1,5 +1,5 @@
 <script setup>
-import * as fc_main from './fc_main.js'
+import * as fc_game from './fc_game.js'
 import * as smz_freq_ctrl from '../smz/smz_freq_ctrl.js'
 import * as smz_save from '../smz/smz_save.js'
 import * as smz_single_check from '../smz/smz_single_check.js'
@@ -12,7 +12,7 @@ export default {
 
     const retDict = {};
     retDict['singleCheck'] = new smz_single_check.SmzSingleCheck('fc.singleCheck');
-    retDict['fcMain'] = new fc_main.FcGame(FPS);
+    retDict['fcMain'] = new fc_game.FcGame(FPS);
     retDict['freqCtrl'] = new smz_freq_ctrl.SmzFreqCtrl(FPS,()=>{retDict['fcMain'].tick();});
     retDict['fcSave'] = new smz_save.SmzSave(retDict['fcMain']);
     
