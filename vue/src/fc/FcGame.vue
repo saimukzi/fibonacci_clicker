@@ -13,7 +13,7 @@ export default {
     const retDict = {};
     retDict['fcMain'] = new fc_game.FcGame(FPS);
     retDict['freqCtrl'] = new smz_freq_ctrl.SmzFreqCtrl(FPS,()=>{retDict['fcMain'].tick();});
-    retDict['fcSave'] = new smz_save.SmzSave(retDict['fcMain']);
+    retDict['fcSave'] = new smz_save.SmzSave("fc.autosave", retDict['fcMain']);
     
     return retDict;
   },
