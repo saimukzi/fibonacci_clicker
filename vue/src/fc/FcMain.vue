@@ -1,7 +1,7 @@
 <script setup>
-import * as smz_single_check from './smz/smz_single_check.js'
+import * as smz_single_check from '../smz/smz_single_check.js'
 import { createApp } from 'vue'
-import FcGame from './fc/FcGame.vue'
+import FcGame from './FcGame.vue'
 </script>
 
 <script>
