@@ -38,5 +38,8 @@ export default {
 </script>
 
 <template>
-  <div id="fc_game"></div>
+  <div v-if="singleCheck.good" id="fc_game"></div>
+  <div v-else>
+    Multiple tab is not allowed.
+  </div>
 </template>
