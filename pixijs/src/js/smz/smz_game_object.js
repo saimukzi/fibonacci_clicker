@@ -8,13 +8,21 @@ export const SmzGameObject = (function(){
 class SmzGameObject extends PIXI.Container {
   constructor(runtime){
     super();
+    const self=this;
     this.runtime = runtime;
     this.uuid = uuidv4();
     if(runtime==null){
       console.error(`runtime==null, uuid=${this.uuid}`);
     }
+    
+    //self._onDestroy = ()=>{self.onDestroy();}
+    //self.destroyed += self._onDestroy;
+    self.on('destroyed', function(){self.onDestroy();});
+    
     if((typeof this.tick)=="function"){
-      this.runtime.app.ticker.add(self.tick);
+      console.log("AVWWHTDP");
+      this._tick = ()=>{self.tick();};
+      this.runtime.app.ticker.add(this._tick);
     }
   };
   
@@ -48,6 +56,13 @@ class SmzGameObject extends PIXI.Container {
       }
     };
     self.runtime.app.ticker.add(tickFuncAry[0],null,priority);
+  };
+  
+  onDestroy(){
+    console.log(`onDestroy ${this.uuid}`);
+    if((typeof this.tick)=="function"){
+      this.runtime.app.ticker.remove(this._tick);
+    }
   };
 };
 

@@ -3,7 +3,7 @@
 import * as smz_game_object from '../../smz/smz_game_object.js';
 import * as PIXI from 'pixi.js';
 
-import Sokoban from '../../game/sokoban/sokoban.js';
+// import Sokoban from '../../game/sokoban/sokoban.js';
 
 'use strict';
 
@@ -11,11 +11,11 @@ export const HomeMenuBtn = (function(){
 
 class HomeMenuBtn extends smz_game_object.SmzGameObject {
 
-  onFire() {
-    const self=this;
-    console.log(`HomeMenuBtn.onFire, self.uuid}=${self.uuid}`);
-    self.runtime.setScene(new Sokoban(self.runtime));
-  };
+  // onFire() {
+  //   const self=this;
+  //   console.log(`HomeMenuBtn.onFire, self.uuid}=${self.uuid}`);
+  //   self.runtime.setScene(new Sokoban(self.runtime));
+  // };
 
   onStateUpdate() {
     const self=this;

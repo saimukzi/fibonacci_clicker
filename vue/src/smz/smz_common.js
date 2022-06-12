@@ -14,4 +14,4 @@ SmzCommon.clone = function(data){
 
 return SmzCommon;
 
-})(); 
+})();
